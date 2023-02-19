@@ -1,31 +1,35 @@
-// now let's read about async read and write
+// now we are going to learn about http module
+// it's used to create a web server
 
-const {readFile, writeFile} = require('fs')
+const http_module = require('http')
 
-readFile('./content/first.txt', 'utf8', (err, result)=>{
-    if(err){
-        console.log(err);
-        return;
+const server = http_module.createServer((req, res)=>{
+    if(req.url === '/'){
+        res.end('<h1> This is the home page</h1>')
     }
 
-    const first_text = result
-    // let's enter the call back hell
-    readFile('./content/second.txt', 'utf8', (err, result)=>{
-        if(err){
-            console.log(err);
-            return;
-        }
-    
-        const second_text = result
+    // this response is going to be called when the we are on the home page
+    if(req.url === '/about'){
+        res.end(`
+        <h1>this is the about page</h1>
+        `)
+    }
 
-        // now we write 
-        writeFile('./content/write_async.txt',`the result is ${first_text}, ${second_text}` ,(err, result)=>{
-            if(err){
-                console.log(err);
-                return;
-            }
+    // this response is for the about page
+    res.end(`
+    <h1> Opps </h1>
+    <a href='/'> Go back to home</a>
+    `)
 
-            console.log(result);// this is just undefined
-        })
-    })
+    // default response for unknown resource 
 })
+
+server.listen(5000)
+
+/*
+    questions for the next session
+        * fix the issue with the servor being down again and again
+        *    
+
+*/
+
