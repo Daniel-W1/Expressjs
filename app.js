@@ -1,22 +1,31 @@
-// the path module
+// now let's read about async read and write
 
-const path = require("path");
-const pathModule = require("path")
+const {readFile, writeFile} = require('fs')
 
-console.log(pathModule.sep); // this tells us the separator of the default system paths
+readFile('./content/first.txt', 'utf8', (err, result)=>{
+    if(err){
+        console.log(err);
+        return;
+    }
 
+    const first_text = result
+    // let's enter the call back hell
+    readFile('./content/second.txt', 'utf8', (err, result)=>{
+        if(err){
+            console.log(err);
+            return;
+        }
+    
+        const second_text = result
 
-// getting the path of a file
+        // now we write 
+        writeFile('./content/write_async.txt',`the result is ${first_text}, ${second_text}` ,(err, result)=>{
+            if(err){
+                console.log(err);
+                return;
+            }
 
-const filePath = path.join("content", "subfolder", "test.txt")
-console.log(filePath);
-
-
-// basename gives the base file
-
-console.log(path.basename(filePath));
-
-// to get absolute path
-const absolute = path.resolve(__dirname, "content", "subfolder", "test.txt")
-
-console.log(absolute);
+            console.log(result);// this is just undefined
+        })
+    })
+})
