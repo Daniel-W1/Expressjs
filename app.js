@@ -1,35 +1,10 @@
-// now we are going to learn about http module
-// it's used to create a web server
+// packages are just folders of js
+// dev dependencies are used only for dev 
+// example is nodemon
 
-const http_module = require('http')
 
-const server = http_module.createServer((req, res)=>{
-    if(req.url === '/'){
-        res.end('<h1> This is the home page</h1>')
-    }
 
-    // this response is going to be called when the we are on the home page
-    if(req.url === '/about'){
-        res.end(`
-        <h1>this is the about page</h1>
-        `)
-    }
-
-    // this response is for the about page
-    res.end(`
-    <h1> Opps </h1>
-    <a href='/'> Go back to home</a>
-    `)
-
-    // default response for unknown resource 
-})
-
-server.listen(5000)
-
-/*
-    questions for the next session
-        * fix the issue with the servor being down again and again
-        *    
-
-*/
-
+console.log("the app js is running");
+console.log("this is the best node js tutorial");
+console.log("this is the best node js tutorial");
+console.log("bla bla bla");
