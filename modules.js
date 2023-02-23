@@ -2,6 +2,9 @@ const data = require('./alternative')
 
 console.log(data);
 
+
+
+
 // { items: [ 'item1', 'item2' ], singlePerson: { name: 'bob' } }
 
 
@@ -36,7 +39,8 @@ console.log(systemInfo);
 // the path module
 
 const path = require("path");
-const pathModule = require("path")
+const pathModule = require("path");
+const { readFile } = require('fs');
 
 console.log(pathModule.sep); // this tells us the separator of the default system paths
 
