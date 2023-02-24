@@ -18,6 +18,9 @@
     "url": "https://github.com/Daniel-W1/Expessjs/issues"
   },
   "homepage": "https://github.com/Daniel-W1/Expessjs#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }, 
   "devDependencies": {
     "nodemon": "^2.0.20"
   }
