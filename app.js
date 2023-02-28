@@ -1,36 +1,30 @@
-const express = require('express')
+// now let's learn about the methods
+// the methods such as the get, put, and post methods
 
+const express = require('express');
+const auth_router = require('./routes/auth')
+const people_router = require('./routes/people')
+const {people} = require('./data')
 const app = express()
-const {products} = require('./data')
-
-app.get("/", (req, res)=>{
-
-    res.send('<h1>Home Page</h1>')
-    // let's use the map method to avoid posting everthing
-})
 
 
-app.get("/api/products", (req, res)=>{
-    const newProducts = products.map((product) =>{
-        const {id, name, image} = product;
-        return {id, name, image};
-    })
-    
-    res.json(newProducts);
-    
-})
-// now let's learn about something called routeparameter..
-// let's say i want to get all the products by their id
-// to do that i can just use parameter at the end of the /api/products/1 
+app.use(express.static('./methods-public'))
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
+app.use('/api/people', people_router)
+app.use('/login', auth_router)
 
-app.get("/api/products/:product_id", (req, res)=>{
-    // res.send('nothing to see here') jjasdjl
-    console.log(req.params);
-
-    const singleProduct = products.find((product) => product.id === Number(req.params.product_id))
-
-    res.json(singleProduct)
-})
+// in order to use the req, and res inside of the post methods
+// we need to use some other thing called ulrencoded middleware
 
 
-app.listen(5000, ()=> console.log('am clicked'))
+// now we are going to learn how to do the post using the 
+// js way
+
+// now let's learn about put and delete 
+
+app.listen(5000)
+// now we learn about routers
+
+
+// tutorial is done!!
